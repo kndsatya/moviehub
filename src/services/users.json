@@ -1,0 +1,12 @@
+[
+  {"id": 123,
+  "username": "satya",
+  "firstName": "Satya",
+  "lastName": "Kota",
+  "password": "Satya1993",
+  "phone": "8573527042",
+  "email": "satya@gmail.com",
+  "role": "critique",
+  "dateOfBirth": "03-03-1993"
+  }
+]
