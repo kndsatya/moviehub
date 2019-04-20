@@ -1,12 +1,28 @@
 [
-  {"id": 123,
-  "username": "satya",
-  "firstName": "Satya",
-  "lastName": "Kota",
-  "password": "Satya1993",
-  "phone": "8573527042",
-  "email": "satya@gmail.com",
-  "role": "critique",
-  "dateOfBirth": "03-03-1993"
+  {
+    "id": 123,
+    "username": "satya",
+    "firstName": "Satya",
+    "lastName": "Kota",
+    "password": "Satya1993",
+    "phone": "8573527042",
+    "email": "satya@gmail.com",
+    "role": "USER",
+    "dateOfBirth": "03-03-1993",
+    "moviesLikedByUser": [
+      {
+        "imdbId": "tt4442758",
+        "title": "Temper",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/vRfSEFM9waphZKoa3ALTZCUYb2F.jpg",
+        "plot": "Daya, a corrupt police officer, finds his life changing when he takes on a case of gang rape."
+      },
+      {
+        "imdbId": "tt8361196",
+        "title": "Vinaya Vidheya Rama",
+        "posterUrl": "https://image.tmdb.org/t/p/w500/oN4LAx5mRaLINaovFv2vo7Tfdsx.jpg",
+        "plot": "Ram is one among the five orphaned boys in Visakhapatnam, adopted by a doctor who ensures them a roof to live under, with dignity. Ram goes to any extent to protect his family and he's a handful for the baddie to handle in a time of crisis. How does Ram protect his family when they need him the most?"
+      }
+    ],
+    "moviesReviewedByUser": []
   }
 ]

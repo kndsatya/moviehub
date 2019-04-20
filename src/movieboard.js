@@ -4,6 +4,7 @@ import SignUp from "./containers/signup/SignUp"
 import Login from './containers/Login/Login'
 import UserService from "./services/UserService";
 import MovieHeader from "./containers/header/MovieHeader";
+import MovieGrid from "./containers/home/MovieGrid";
 
 class MovieBoard extends Component{
 
@@ -20,7 +21,9 @@ class MovieBoard extends Component{
                 phone: "",
                 email: "",
                 role: "",
-                dateOfBirth: ""
+                dateOfBirth: "",
+                moviesLikedByUser: [],
+                moviesReviewedByUser: []
             }
         }
     }
@@ -70,6 +73,13 @@ class MovieBoard extends Component{
                                    return (<div>
                                        <MovieHeader {...props}/>
                                        <Login {...props}/>
+                                   </div>)
+                               }}/>
+                        <Route path='/home' exact
+                               render={(props) => {
+                                   return (<div>
+                                       <MovieHeader {...props}/>
+                                       <MovieGrid {...props}/>
                                    </div>)
                                }}/>
                     </div>

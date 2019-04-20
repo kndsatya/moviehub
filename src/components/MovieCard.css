@@ -1,0 +1,22 @@
+.moviehub-card-bottom {
+    margin-top: 10px;
+}
+
+.moviehub-card-text {
+
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+
+}
+
+.moviehub-card-summary {
+
+    height: 3em;
+    line-height: 1em;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+
+}

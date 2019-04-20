@@ -21,9 +21,7 @@ class UserService{
 
     loggedinUser = ()=>{
 
-        return Promise.resolve({
-
-                               });
+        return Promise.resolve(users[0]);
 
     }
 
