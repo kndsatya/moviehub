@@ -20,3 +20,14 @@
     text-overflow: ellipsis;
 
 }
+
+a:-webkit-any-link{
+    text-decoration: none;
+}
+.moviehub-link{
+    color:black;
+}
+
+.moviehub-link:hover { text-decoration: none; color:black; }
+.moviehub-link:visited { text-decoration: none; color:black; }
+.moviehub-link:focus { text-decoration: none; color:black; }

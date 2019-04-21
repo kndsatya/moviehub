@@ -5,10 +5,12 @@ import Login from './containers/Login/Login'
 import UserService from "./services/UserService";
 import MovieHeader from "./containers/header/MovieHeader";
 import MovieGrid from "./containers/home/MovieGrid";
+import Search from "./search/Search";
+import SearchResult from "./search/SearchResult";
 
-class MovieBoard extends Component{
+class MovieBoard extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.userService = new UserService()
         this.state = {
@@ -28,7 +30,6 @@ class MovieBoard extends Component{
         }
     }
 
-
     componentDidMount() {
 
         this.userService.loggedinUser().then(
@@ -40,11 +41,9 @@ class MovieBoard extends Component{
                     }
                 )
             }
-
         )
 
     }
-
 
     updateLoginUser = (user) => {
         this.setState({
@@ -52,10 +51,9 @@ class MovieBoard extends Component{
                       })
     }
 
+    render(props) {
 
-    render(props){
-
-        return(
+        return (
 
             <div>
                 <Router>
@@ -82,6 +80,22 @@ class MovieBoard extends Component{
                                        <MovieGrid {...props}/>
                                    </div>)
                                }}/>
+                        <Route path='/search' exact
+                               render={(props) => {
+                                   return (<div>
+                                       <MovieHeader {...props}/>
+                                       <Search {...props}/>
+                                   </div>)
+                               }}/>
+                        <Route path="/search/:query"
+                               exact
+                               render={(props) => {
+                                   return (<div>
+                                       <MovieHeader {...props}/>
+                                       <Search {...props}/>
+                                       <SearchResult {...props}/>
+                                   </div>)
+                               }}/>
                     </div>
                 </Router>
             </div>
@@ -90,4 +104,4 @@ class MovieBoard extends Component{
 
 }
 
-export  default  MovieBoard;
+export default MovieBoard;
