@@ -64,7 +64,7 @@ class MovieGrid extends React.Component {
                     this.state.loginUser.id === ""?<div></div>:
                     this.state.loginUser.role === "USER" ? <div className="container-fluid mt-3">
                                                              <div className="row">
-                                                                 {this.state.likedMovies.length!=0?
+                                                                 {this.state.likedMovies.length!==0?
                                                                   <h4><strong>LIKED MOVIES:</strong></h4>:
                                                                  <div></div>}
                                                                  </div>
@@ -82,7 +82,7 @@ class MovieGrid extends React.Component {
                                           </div>
                                   </div>:
                     <div className="container-fluid mt-3">
-                        <div className="row">{this.state.reviewedMovies.length!=0?
+                        <div className="row">{this.state.reviewedMovies.length!==0?
                                               <h4><strong>REVIEWED MOVIES:</strong></h4>
                                                                                  :<div></div>
                         }</div>
@@ -101,7 +101,7 @@ class MovieGrid extends React.Component {
                 }
 
                 <div className="container-fluid mt-3 mb-2">
-                    <div className="row"> {this.state.movies.length!=0?<h4><strong>ALL MOVIES:</strong></h4>
+                    <div className="row"> {this.state.movies.length!==0?<h4><strong>ALL MOVIES:</strong></h4>
                                                                       :<div></div>
                     }</div>
                 </div>
