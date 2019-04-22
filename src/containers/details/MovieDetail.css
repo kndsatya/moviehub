@@ -1,0 +1,57 @@
+.moviehub-video{
+
+    height: 370px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+
+}
+
+.moviehub-like{
+
+    color:red;
+}
+
+
+.moviehub-unlike{
+
+    color:black;
+}
+
+
+.moviehub-unlike-background{
+    background-color: lavender;
+}
+
+.moviehub-font{
+    font-family: Arial;
+}
+
+.moviehub-details{
+    background-color: white;
+}
+
+.moviehub-link{
+    color: black;
+}
+
+.moviehub-link:hover { text-decoration: underline; color:black; }
+.moviehub-link:visited { text-decoration: none; color:black; }
+.moviehub-link:focus { text-decoration: none; color:black; }
+
+.moviehub-button{
+    cursor: pointer;
+}
+
+.moviehub-button:hover {
+    text-decoration: underline;
+}
+
+
+.moviehub-button:visited {
+    text-decoration: underline;
+}
+
+.moviehub-button:focus {
+    text-decoration: underline;
+}

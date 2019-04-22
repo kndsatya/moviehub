@@ -7,6 +7,8 @@ import MovieHeader from "./containers/header/MovieHeader";
 import MovieGrid from "./containers/home/MovieGrid";
 import Search from "./search/Search";
 import SearchResult from "./search/SearchResult";
+import MovieDetail from "./containers/details/MovieDetail";
+
 
 class MovieBoard extends Component {
 
@@ -60,6 +62,7 @@ class MovieBoard extends Component {
                     <div>
                         <Route path='/signup' exact
                                render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props}/>
                                        <SignUp {...props} updateLoginUser={this.updateLoginUser}/>
@@ -68,6 +71,7 @@ class MovieBoard extends Component {
 
                         <Route path='/login' exact
                                render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props}/>
                                        <Login {...props}/>
@@ -75,13 +79,16 @@ class MovieBoard extends Component {
                                }}/>
                         <Route path='/home' exact
                                render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props}/>
                                        <MovieGrid {...props}/>
                                    </div>)
                                }}/>
                         <Route path='/search' exact
+
                                render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props}/>
                                        <Search {...props}/>
@@ -90,10 +97,20 @@ class MovieBoard extends Component {
                         <Route path="/search/:query"
                                exact
                                render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props}/>
                                        <Search {...props}/>
                                        <SearchResult {...props}/>
+                                   </div>)
+                               }}/>
+                        <Route path="/movie/:movieId"
+                               exact
+                               render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
+                                   return (<div>
+                                       <MovieHeader {...props}/>
+                                       <MovieDetail {...props}/>
                                    </div>)
                                }}/>
                     </div>

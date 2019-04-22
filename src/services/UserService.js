@@ -25,6 +25,42 @@ class UserService{
 
     }
 
+    findAllLikedMovies = () =>{
+        return Promise.resolve([
+
+                                   {
+                                       "id": "tt4442758",
+                                       "title":"Temper",
+                                       "poster_path":"/vRfSEFM9waphZKoa3ALTZCUYb2F.jpg",
+                                       "overview":"Daya, a corrupt police officer, finds his life changing when he takes on a case of gang rape."
+                                   },
+                                   {
+                                       "id": "tt8361196",
+                                       "title":"Vinaya Vidheya Rama",
+                                       "poster_path":"/oN4LAx5mRaLINaovFv2vo7Tfdsx.jpg",
+                                       "overview":"Ram is one among the five orphaned boys in Visakhapatnam, adopted by a doctor who ensures them a roof to live under, with dignity. Ram goes to any extent to protect his family and he's a handful for the baddie to handle in a time of crisis. How does Ram protect his family when they need him the most?"
+                                   }
+                               ])
+    }
+
+    findAllReviewedMovies = () => {
+        return Promise.resolve([
+
+                                   {
+                                       "id": "tt4442758",
+                                       "title":"Temper",
+                                       "poster_path":"/vRfSEFM9waphZKoa3ALTZCUYb2F.jpg",
+                                       "overview":"Daya, a corrupt police officer, finds his life changing when he takes on a case of gang rape."
+                                   },
+                                   {
+                                       "id": "tt8361196",
+                                       "title":"Vinaya Vidheya Rama",
+                                       "poster_path":"/oN4LAx5mRaLINaovFv2vo7Tfdsx.jpg",
+                                       "overview":"Ram is one among the five orphaned boys in Visakhapatnam, adopted by a doctor who ensures them a roof to live under, with dignity. Ram goes to any extent to protect his family and he's a handful for the baddie to handle in a time of crisis. How does Ram protect his family when they need him the most?"
+                                   }
+                               ])
+    }
+
     updateUser=(user)=>{
         return fetch("https://fast-mesa-67485.herokuapp.com/api/update",{
             method:'put',

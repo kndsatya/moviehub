@@ -12,20 +12,70 @@
 
 }
 
-.moviehub-card-summary {
-
-    height: 3em;
-    line-height: 1em;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-
+/* styles for '...' */
+.movie-hub-block-with-text {
+    /* hide text if it more than N lines  */
+    overflow: hidden;
+    /* for set '...' in absolute position */
+    position: relative;
+    /* use this value to count block height */
+    line-height: 1.2em;
+    /* max-height = line-height (1.2) * lines max number (3) */
+    max-height: 4.8em;
+    /* fix problem when last visible word doesn't adjoin right side  */
+    text-align: justify;
+    /* place for '...' */
+    margin-right: -1em;
+    padding-right: 1em;
+    text-decoration: none;
 }
+/* create the ... */
+.movie-hub-block-with-text:before {
+    /* points in the end */
+    content: '...';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of block */
+    right: 0;
+    bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.movie-hub-block-with-text:after {
+    /* points in the end */
+    content: '';
+    /* absolute position */
+    position: absolute;
+    /* set position to right bottom corner of text */
+    right: 0;
+    /* set width and height */
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    /* bg color = bg color under block */
+    background: white;
+}
+
+.movie-hub-block-with-text:hover{
+    text-decoration: none; color:black;
+}
+
+.movie-hub-block-with-text:visited{
+    text-decoration: none; color:black;
+}
+
+.movie-hub-block-with-text:focus{
+    text-decoration: none; color:black;
+}
+
+
+
 
 a:-webkit-any-link{
     text-decoration: none;
 }
 .moviehub-link{
     color:black;
+    text-decoration: none;
 }
 
 .moviehub-link:hover { text-decoration: none; color:black; }

@@ -3,9 +3,10 @@ import './MovieCard.css';
 import defaultImage from '../resources/default.jpg'
 import {BrowserRouter as Router,Link} from 'react-router-dom'
 
+
 const MovieCard =({movie})=>
 
-    <div className="col-sm-12 col-md-4 col-lg-3 mb-1">
+    <div className="col-sm-12 col-md-4 col-lg-3 mb-2">
             <Link className="moviehub-link" to={`/movie/${movie.id}`}>
         <div className="card h-100" styles="width:18rem;">
 
@@ -19,7 +20,7 @@ const MovieCard =({movie})=>
             <div className="card-body">
                 <h5 className="card-title moviehub-card-text">
                     {movie.title}</h5>
-                <p className="card-text">{movie.overview}</p>
+                <p className="card-text movie-hub-block-with-text">{movie.overview}</p>
             </div>
         </div>
         </Link>

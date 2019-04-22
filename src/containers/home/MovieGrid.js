@@ -4,6 +4,7 @@ import MovieService from "../../services/MovieService";
 import UserService from "../../services/UserService";
 import "./MovieGrid.css"
 
+
 class MovieGrid extends React.Component {
 
     constructor(props) {
@@ -23,9 +24,7 @@ class MovieGrid extends React.Component {
                 phone: "",
                 email: "",
                 role: "",
-                dateOfBirth: "",
-                moviesLikedByUser: [],
-                moviesReviewedByUser: []
+                dateOfBirth: ""
             }
         }
     }
@@ -46,10 +45,27 @@ class MovieGrid extends React.Component {
                 this.setState(
                     {
                         loginUser: user,
-                        likedMovies: user.moviesLikedByUser,
-                        reviewedMovies: user.moviesReviewedByUser
                     }
                 )
+                if(this.state.loginUser.id!=="") {
+
+                    if(this.state.loginUser.role=="USER"){
+                        this.userService.findAllLikedMovies(this.state.loginUser.id)
+                            .then((movies) => {
+                                this.setState({
+                                                  likedMovies: movies
+                                              })
+                            })
+                    }else{
+                        this.userService.findAllReviewedMovies(this.state.loginUser.id)
+                            .then((movies) => {
+                                this.setState({
+                                                  reviewedMovies: movies
+                                              })
+                            })
+                    }
+                }
+
             }
         )
     }
@@ -58,7 +74,7 @@ class MovieGrid extends React.Component {
 
         return (
 
-            <div>
+            <div className="moviehub-text">
                 {
 
                     this.state.loginUser.id === ""?<div></div>:
@@ -68,7 +84,7 @@ class MovieGrid extends React.Component {
                                                                   <h4><strong>LIKED MOVIES:</strong></h4>:
                                                                  <div></div>}
                                                                  </div>
-                                         <div className="row">
+                                         <div className="row mt-2">
 
                                          {
                                                this.state.likedMovies.map((movie) => {
