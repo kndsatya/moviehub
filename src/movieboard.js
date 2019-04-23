@@ -50,6 +50,7 @@ class MovieBoard extends Component {
     }
 
     updateLoginUser = (user) => {
+
         this.setState({
                           loginUser: user
                       })
@@ -66,7 +67,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <SignUp {...props} updateLoginUser={this.updateLoginUser}/>
                                    </div>)
                                }}/>
@@ -75,7 +77,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <Login {...props} updateLoginUser={this.updateLoginUser}/>
                                    </div>)
                                }}/>
@@ -83,7 +86,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <MovieGrid {...props}/>
                                    </div>)
                                }}/>
@@ -91,7 +95,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <MovieGrid {...props}/>
                                    </div>)
                                }}/>
@@ -101,7 +106,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <Search {...props}/>
                                    </div>)
                                }}/>
@@ -110,7 +116,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <Search {...props}/>
                                        <SearchResult {...props}/>
                                    </div>)
@@ -120,7 +127,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <MovieDetail {...props}/>
                                    </div>)
                                }}/>
@@ -130,7 +138,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <Profile {...props}/>
                                    </div>)
                                }}/>
@@ -140,7 +149,8 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser}/>
                                        <GlobalProfile {...props}/>
                                    </div>)
                                }}/>

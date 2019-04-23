@@ -19,39 +19,26 @@ class SignUp extends React.Component {
         }
     }
 
-    usernameChanged = (event) =>{
-        this.state.user.userName = event.target.value
-    }
-
-    passwordChanged = (event) => {
-        this.state.user.password = event.target.value
-    }
-
-    reenteredPasswordChanged = (event)=>{
-        this.state.reenteredPassword  = event.target.value
-    }
-
-
-
-    roleChanged = (event) => {
-        this.state.user.role = event.target.value
-    }
 
     register = (event) => {
         event.preventDefault();
 
-        if(this.state.user.userName===""||this.state.user.password===""
-           ||this.state.reenteredPassword===""){
+        const username = document.getElementById("username").value
+        const password = document.getElementById("password").value
+        const reenteredPassword = document.getElementById("verify_password").value
+        if(username===""||password===""
+           ||reenteredPassword===""){
             alert("Please enter all the fields");
         }
 
-        else if(this.state.user.password!==this.state.reenteredPassword){
+        else if(password!==reenteredPassword){
             alert("Password and password for verification should match");
         }
         else {
             const user = {
-                username:this.state.user.userName,
-                password:this.state.user.password
+                username:document.getElementById("username").value,
+                password: document.getElementById("password").value,
+                role: document.getElementById("role").value
             }
 
 
@@ -86,7 +73,7 @@ class SignUp extends React.Component {
                             <div className="col-sm-10">
                                 <input className="form-control"
                                        id="username"
-                                       placeholder="Satya" onChange={this.usernameChanged}/>
+                                       placeholder="Satya"/>
                             </div>
                         </div>
 
@@ -97,7 +84,7 @@ class SignUp extends React.Component {
                                 <input className="form-control wbdv-password-fld"
                                        id="password"
                                        type="password"
-                                       placeholder="$adbada@12" onChange={this.passwordChanged}/>
+                                       placeholder="$adbada@12"/>
                             </div>
                         </div>
 
@@ -109,18 +96,16 @@ class SignUp extends React.Component {
                                 <input className="form-control wbdv-password-fld"
                                        id="verify_password"
                                        type="password"
-                                       placeholder="$adbada@12"
-                                       onChange={this.reenteredPasswordChanged}/>
+                                       placeholder="$adbada@12"/>
                             </div>
                         </div>
 
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label" htmlFor="role">Role</label>
                             <div className="col-sm-10">
-                                <select name="role" id="role" className="custom-select mr-sm-2"
-                                        onChange={this.roleChanged}>
+                                <select name="role" id="role" className="custom-select mr-sm-2">
 
-                                        <option value="USER">
+                                        <option value="AUDIENCE">
                                             AUDIENCE
                                         </option>
 
