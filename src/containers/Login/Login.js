@@ -17,7 +17,7 @@ class Login extends React.Component {
     componentDidMount(){
         this.userService.loggedinUser().then(
             (user)=>{
-                if(user.id!=null){
+                if(user.id!==""){
                     this.props.history.push("/profile")
                 }
             }
@@ -42,6 +42,7 @@ class Login extends React.Component {
 
             (user)=>{
                 if(user.username!==null){
+                    this.props.updateLoginUser(user)
                     return this.props.history.push("/profile")}
                 alert("Invalid Credentials")
             }
@@ -53,7 +54,7 @@ class Login extends React.Component {
 
     render() {
         return (<div>
-            <div className="container">
+            <div className="container moviehub-text">
                 <h1>Sign In</h1>
                 <form>
 

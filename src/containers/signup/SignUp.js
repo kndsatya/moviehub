@@ -12,7 +12,8 @@ class SignUp extends React.Component {
             user:{
                 id:"",
                 userName:"",
-                password: ""
+                password: "",
+                role:""
             },
             registeredUser:""
         }
@@ -31,6 +32,10 @@ class SignUp extends React.Component {
     }
 
 
+
+    roleChanged = (event) => {
+        this.state.user.role = event.target.value
+    }
 
     register = (event) => {
         event.preventDefault();
@@ -59,6 +64,7 @@ class SignUp extends React.Component {
                             registeredUser:user
                                       })
                         this.props.updateLoginUser(this.state.registeredUser)
+                        this.props.history.push("/login")
                     }
                     else{
                         alert("User exists already");
@@ -70,7 +76,7 @@ class SignUp extends React.Component {
     render() {
         return (
             <div>
-                <div className="container">
+                <div className="container moviehub-text">
                     <h1>Sign Up</h1>
                     <form>
 
@@ -107,6 +113,25 @@ class SignUp extends React.Component {
                                        onChange={this.reenteredPasswordChanged}/>
                             </div>
                         </div>
+
+                        <div className="form-group row">
+                            <label className="col-sm-2 col-form-label" htmlFor="role">Role</label>
+                            <div className="col-sm-10">
+                                <select name="role" id="role" className="custom-select mr-sm-2"
+                                        onChange={this.roleChanged}>
+
+                                        <option value="USER">
+                                            AUDIENCE
+                                        </option>
+
+                                     <option value="CRITIC">
+                                            CRITIC
+                                        </option>
+
+                                </select>
+                            </div>
+                        </div>
+
 
                         <div className="form-group row">
                             <label className="col-sm-2 col-form-label"></label>

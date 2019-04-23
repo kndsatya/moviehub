@@ -21,13 +21,19 @@ class MovieDetail extends React.Component {
         this.state = {
             movie: {
                 id: "",
-                title: "",
-                overview: "",
-                release_date: "",
+                title: "N/A",
+                overview: "N/A",
+                release_date: "N/A",
                 imdb_id: "",
-                actors: "",
-                genre: "",
-                imdb_rating: ""
+                actors: "N/A",
+                genre: "N/A",
+                imdb_rating: "N/A",
+                director:"N/A",
+                writer:"N/A",
+                language:"N/A",
+                conutry:"N/A"
+
+
             },
 
             loggedInUser: {
@@ -142,6 +148,7 @@ class MovieDetail extends React.Component {
     }
 
 
+
     componentDidMount() {
 
         this.movieService.getTrailer(this.movieId)
@@ -212,6 +219,9 @@ class MovieDetail extends React.Component {
                     this.setState({
                                       movie: tmdb_movie
                                   })
+                    if(responseMovie.imdb_id===null){
+                        return
+                    }
                     this.movieService.getDetailsFromOMDB(this.state.movie.imdb_id)
                         .then(
                             (responseMovieDetail) => {
@@ -236,6 +246,11 @@ class MovieDetail extends React.Component {
                         )
                 }
             )
+
+        this.movieService.createMovie(this.state.movie)
+            .then((movie)=>{
+                    return
+                  })
     }
 
     render() {
@@ -499,7 +514,7 @@ class MovieDetail extends React.Component {
                                 <div className="card-body">
 
                                     {
-                                        this.state.loggedInUser.id !== "" ? <PostReview
+                                        this.state.loggedInUser.id !== "" && this.state.loggedInUser.role==="CRITIC"? <PostReview
                                                                               postReview={this.postReview}
                                                                               reviewComment={this.state.reviewComment}
                                                                               updateReviewComments={this.updateReviewComments}/> :
@@ -522,7 +537,7 @@ class MovieDetail extends React.Component {
                                                         editReview={this.editReview}
                                                         deleteReview={this.deleteReview}
                                                         loginUser={this.state.loggedInUser}
-                                                        props={this.props}/>
+                                                        props={this.props} isMovieReview={true}/>
                                             )
                                         }
                                     )}

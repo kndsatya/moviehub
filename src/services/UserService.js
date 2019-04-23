@@ -25,7 +25,54 @@ class UserService{
 
     }
 
-    findAllLikedMovies = () =>{
+    findAllReviews = (userId) => {
+        return Promise.resolve([
+                                   {
+                                       id: 1,
+                                       reviewComments: "Very Good Movie!!!!!",
+                                       user: {
+                                           id: 1,
+                                           username: "satya"
+                                       },
+                                       movie: {
+                                           id: "tt8361196",
+                                           title: "vvr"
+                                       }
+                                   }, {
+                id: 2,
+                reviewComments: "Very Good Movie!!!!!",
+                user: {
+                    id: 2,
+                    username: "satya"
+                }, movie:{
+                    id: "tt8361196",
+                    title: "ntr"
+                }
+            }, {
+                id: 3,
+                reviewComments: "Very Good Movie!!!!!",
+                user: {
+                    id: 3,
+                    username: "satya"
+                }, movie:{
+                    id: "tt8361196",
+                    title: "nbk"
+                }
+            }, {
+                id: 4,
+                reviewComments: "Very Good Movie !!!!!!!!!!!!!",
+                user: {
+                    id: 4,
+                    username: "satya"
+                }, movie:{
+                    id: "tt8361196",
+                    title: "cheg"
+                }
+            }
+                               ])
+    }
+
+    findAllLikedMovies = (userId) =>{
         return Promise.resolve([
 
                                    {
@@ -59,6 +106,11 @@ class UserService{
                                        "overview":"Ram is one among the five orphaned boys in Visakhapatnam, adopted by a doctor who ensures them a roof to live under, with dignity. Ram goes to any extent to protect his family and he's a handful for the baddie to handle in a time of crisis. How does Ram protect his family when they need him the most?"
                                    }
                                ])
+    }
+
+    findUserById = (userId) => {
+
+        return Promise.resolve(users[0])
     }
 
     updateUser=(user)=>{
