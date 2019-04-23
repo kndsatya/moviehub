@@ -1,7 +1,7 @@
 class ReviewService{
 
     constructor(){
-        this.URL = "http://localhost:8081"
+        this.URL = "https://moviehub-server.herokuapp.com"
     }
 
     postReview = (reviewComment,movie,user) => {
