@@ -252,6 +252,10 @@ class MovieDetail extends React.Component {
                                       movie: tmdb_movie
                                   })
                     if(responseMovie.imdb_id===null){
+                        this.movieService.createMovie(this.state.movie)
+                            .then((movie)=>{
+                                return movie
+                            })
                         return
                     }
                     this.movieService.getDetailsFromOMDB(this.state.movie.imdb_id)
