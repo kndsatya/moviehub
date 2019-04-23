@@ -3,6 +3,12 @@ a{
     text-decoration: none;
     cursor: pointer;
 }
+
 .moviehub-text{
-    color: white;
+
+    color:white;
+}
+
+.review-text {
+    color:black;
 }

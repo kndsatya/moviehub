@@ -8,6 +8,8 @@ import MovieGrid from "./containers/home/MovieGrid";
 import Search from "./search/Search";
 import SearchResult from "./search/SearchResult";
 import MovieDetail from "./containers/details/MovieDetail";
+import Profile from "./containers/profile/Profile";
+import GlobalProfile from "./containers/profile/GlobalProfile";
 
 
 class MovieBoard extends Component {
@@ -64,7 +66,7 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
                                        <SignUp {...props} updateLoginUser={this.updateLoginUser}/>
                                    </div>)
                                }}/>
@@ -73,24 +75,33 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props}/>
-                                       <Login {...props}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <Login {...props} updateLoginUser={this.updateLoginUser}/>
                                    </div>)
                                }}/>
                         <Route path='/home' exact
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
                                        <MovieGrid {...props}/>
                                    </div>)
                                }}/>
+                        <Route path='/' exact
+                               render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
+                                   return (<div>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <MovieGrid {...props}/>
+                                   </div>)
+                               }}/>
+
                         <Route path='/search' exact
 
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
                                        <Search {...props}/>
                                    </div>)
                                }}/>
@@ -99,7 +110,7 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
                                        <Search {...props}/>
                                        <SearchResult {...props}/>
                                    </div>)
@@ -109,10 +120,31 @@ class MovieBoard extends Component {
                                render={(props) => {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
-                                       <MovieHeader {...props}/>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
                                        <MovieDetail {...props}/>
                                    </div>)
                                }}/>
+
+                        <Route path="/profile"
+                               exact
+                               render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
+                                   return (<div>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <Profile {...props}/>
+                                   </div>)
+                               }}/>
+
+                        <Route path="/profile/:profileId"
+                               exact
+                               render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
+                                   return (<div>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}/>
+                                       <GlobalProfile {...props}/>
+                                   </div>)
+                               }}/>
+
                     </div>
                 </Router>
             </div>

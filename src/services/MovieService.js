@@ -253,7 +253,8 @@ class MovieService {
                                            username: "satya"
                                        },
                                        movie: {
-                                           id: "tt8361196"
+                                           id: "tt8361196",
+                                           title: "vvr"
                                        }
                                    }, {
                 id: 2,
@@ -261,6 +262,9 @@ class MovieService {
                 user: {
                     id: 2,
                     username: "satya"
+                }, movie:{
+                    id: "tt8361196",
+                    title: "ntr"
                 }
             }, {
                 id: 3,
@@ -268,6 +272,9 @@ class MovieService {
                 user: {
                     id: 3,
                     username: "satya"
+                }, movie:{
+                    id: "tt8361196",
+                    title: "nbk"
                 }
             }, {
                 id: 4,
@@ -275,11 +282,17 @@ class MovieService {
                 user: {
                     id: 4,
                     username: "satya"
+                }, movie:{
+                    id: "tt8361196",
+                    title: "cheg"
                 }
             }
                                ])
     }
 
+    createMovie = (movie) => {
+        return Promise.resolve({})
+    }
     likeMovie = (movieId,userId) => {
         return Promise.resolve({})
     }

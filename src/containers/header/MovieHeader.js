@@ -33,18 +33,22 @@ class MovieHeader extends React.Component{
                             <a className="nav-link" role="btn"
                                onClick={()=>this.props.history.push("/search")}>Search</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" role="btn"
-                               onClick={()=>this.props.history.push("/login")}>Login</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" role="btn"
-                               onClick={()=>this.props.history.push("/logout")}>Logout</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" role="btn"
-                               onClick={()=>this.props.history.push("/SignUp")}>SignUp</a>
-                        </li>
+                        {
+                            this.props.loginUser.id===""?<li className="nav-item">
+                                <a className="nav-link" role="btn"
+                                   onClick={()=>this.props.history.push("/login")}>Login</a>
+                            </li>:                         <li className="nav-item">
+                                <a className="nav-link" role="btn"
+                                   onClick={()=>this.props.history.push("/logout")}>Logout</a>
+                            </li>
+                        }
+                        {
+                            this.props.loginUser.id===""?<li className="nav-item">
+                                <a className="nav-link" role="btn"
+                                   onClick={()=>this.props.history.push("/SignUp")}>SignUp</a>
+                            </li>:<li></li>
+                        }
+
                     </ul>
                 </div>
             </nav>

@@ -1,15 +1,24 @@
 import React from 'react'
 
-const Review = ({review,editReview,deleteReview,loginUser,props}) => <div>
+const Review = ({review,editReview,deleteReview,loginUser,props,isMovieReview}) => <div>
 
 
     <div className="row">
-        <div className="col-sm-11 moviehub-button" role="btn"
-             onClick={()=>props.history.push("/profile/"+review.user.id)}>
-            <div className="col-sm-11">
-                <h5>{review.user.username}</h5>
+        {
+            isMovieReview? <div className="col-sm-11 moviehub-button" role="btn"
+                                       onClick={()=>props.history.push("/profile/"+review.user.id)}>
+                <div className="col-sm-11">
+                    <h5>{review.user.username}</h5>
+                </div>
+            </div>:<div className="col-sm-11 moviehub-button" role="btn"
+                        onClick={()=>props.history.push("/movie/"+review.movie.id)}>
+                <div className="col-sm-11">
+                    <h5>{review.movie.title}</h5>
+                </div>
             </div>
-        </div>
+
+        }
+
 
         <div className="col-sm-1">
             {review.user.id === loginUser.id?
