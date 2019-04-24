@@ -2,7 +2,7 @@ class UserService{
 
 
     constructor(){
-         this.URL = "https://moviehub-server.herokuapp.com"
+         this.URL = "http://localhost:8081"
     }
 
     register=(user)=>{
