@@ -1,7 +1,7 @@
 class MovieService {
 
     constructor() {
-       this.URL = "http://localhost:8081"
+       this.URL = " https://moviehub-server.herokuapp.com"
     }
 
     findAllMovies = () => {
@@ -45,7 +45,7 @@ class MovieService {
 
     getDetailsFromOMDB = (movieId) => {
 
-        const detailsURL = "http://www.omdbapi.com/?apikey=a65a037f&i=" + movieId
+        const detailsURL = "https://www.omdbapi.com/?apikey=a65a037f&i=" + movieId
         return fetch(detailsURL).then(response => {
             return response.json()
         })
