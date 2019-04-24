@@ -1,7 +1,7 @@
 import React from 'react';
 import './MovieCard.css';
 import defaultImage from '../resources/default.jpg'
-import {BrowserRouter as Router,Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
 const MovieCard =({movie})=>
