@@ -9,7 +9,7 @@ const PostReview = ({reviewComment,updateReviewComments,postReview}) =>
                                                                       placeholder="Write your review about the movie"
                                                                       defaultValue={reviewComment}
                                                                       onChange={() => {
-                                                                          const rev = document.getElementById(
+                                                                          let rev = document.getElementById(
                                                                               "post-review").value
                                                                           updateReviewComments(
                                                                               rev)
@@ -21,7 +21,9 @@ const PostReview = ({reviewComment,updateReviewComments,postReview}) =>
                 <button className="btn btn-dark"
                         id="search-button" onClick={
                     () => {
-                        postReview(reviewComment)
+                        document.getElementById(
+                            "post-review").value = ""
+                        postReview()
                     }
                 }
                         type="button">POST

@@ -8,7 +8,7 @@ const ReviewUpdate = ({updateReview, review, readUpdatedComments}) =>
             className="form-control"
             rows="2"
             placeholder="Update your review"
-            defaultValue={review.reviewComments}
+            defaultValue={review.reviewComment}
             onChange={() => {
                 const updatedComment = document.getElementById(
                     "update-review").value

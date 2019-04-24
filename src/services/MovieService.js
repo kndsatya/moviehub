@@ -1,13 +1,15 @@
-import movies from './movies.json';
-
 class MovieService {
 
     constructor() {
-
+       this.URL = "http://localhost:8081"
     }
 
     findAllMovies = () => {
-        return Promise.resolve(movies)
+        return fetch(this.URL+"/api/movies",{
+            credentials:'include'
+        })
+            .then(response=>{
+                return response.json()});
     }
 
     search = (query) => {
@@ -50,255 +52,62 @@ class MovieService {
     }
 
     getLikedUsers = (movieId) => {
-        return Promise.resolve([{
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }, {
-            "id": 123,
-            "username": "satya",
-            "firstName": "Satya",
-            "lastName": "Kota",
-            "password": "Satya1993",
-            "phone": "8573527042",
-            "email": "satya@gmail.com",
-            "role": "USER",
-            "dateOfBirth": "03-03-1993"
-        }])
+
+        return fetch(this.URL+"/api/movie/"+movieId+"/users",{
+            credentials:'include'
+        })
+            .then(response=>{
+                return response.json()});
     }
 
     getReviews = (movieId) => {
-        return Promise.resolve([
-                                   {
-                                       id: 1,
-                                       reviewComments: "Very Good Movie!!!!!",
-                                       user: {
-                                           id: 1,
-                                           username: "satya"
-                                       },
-                                       movie: {
-                                           id: "tt8361196",
-                                           title: "vvr"
-                                       }
-                                   }, {
-                id: 2,
-                reviewComments: "Very Good Movie!!!!!",
-                user: {
-                    id: 2,
-                    username: "satya"
-                }, movie:{
-                    id: "tt8361196",
-                    title: "ntr"
-                }
-            }, {
-                id: 3,
-                reviewComments: "Very Good Movie!!!!!",
-                user: {
-                    id: 3,
-                    username: "satya"
-                }, movie:{
-                    id: "tt8361196",
-                    title: "nbk"
-                }
-            }, {
-                id: 4,
-                reviewComments: "Very Good Movie !!!!!!!!!!!!!",
-                user: {
-                    id: 4,
-                    username: "satya"
-                }, movie:{
-                    id: "tt8361196",
-                    title: "cheg"
-                }
-            }
-                               ])
+
+        return fetch(this.URL+"/api/movie/"+movieId+"/reviews",{
+            credentials:'include'
+        })
+            .then( response =>{
+               return response.json()});
     }
 
     createMovie = (movie) => {
-        return Promise.resolve({})
+
+        return fetch( this.URL+"/api/movie",{
+            method:'post',
+            body: JSON.stringify(movie),
+            credentials:'include',
+            headers:{
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+            }
+        })
+            .then((response)=>{
+                return response.json()});
     }
+
     likeMovie = (movieId,userId) => {
-        return Promise.resolve({})
+
+        return fetch( this.URL+"/api/user/"+userId+"/like/movie/"+movieId,{
+            method:'post',
+            credentials:'include',
+            headers:{
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+            }
+        })
+            .then(()=>{
+                return });
     }
 
     disLikeMovie = (movieId,userId) => {
-        return Promise.resolve({})
+        return fetch(this.URL+"/api/user/"+userId+"/unlike/movie/"+movieId,{
+                         credentials:'include',
+                         method:"delete"
+                     }
+
+        ).then(
+            response => {
+                return }
+        );
     }
 
 }
