@@ -10,6 +10,8 @@ import SearchResult from "./search/SearchResult";
 import MovieDetail from "./containers/details/MovieDetail";
 import Profile from "./containers/profile/Profile";
 import GlobalProfile from "./containers/profile/GlobalProfile";
+import Followers from "./containers/user_network/Followers";
+import Following from "./containers/user_network/Following";
 
 
 class MovieBoard extends Component {
@@ -30,7 +32,8 @@ class MovieBoard extends Component {
                 dateOfBirth: "",
                 moviesLikedByUser: [],
                 moviesReviewedByUser: []
-            }
+            },
+            currentActive: "HOME"
         }
     }
 
@@ -68,7 +71,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"signup"}/>
                                        <SignUp {...props} updateLoginUser={this.updateLoginUser}/>
                                    </div>)
                                }}/>
@@ -78,7 +81,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"login"}/>
                                        <Login {...props} updateLoginUser={this.updateLoginUser}/>
                                    </div>)
                                }}/>
@@ -87,7 +90,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"home"}/>
                                        <MovieGrid {...props}/>
                                    </div>)
                                }}/>
@@ -96,7 +99,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"home"}/>
                                        <MovieGrid {...props}/>
                                    </div>)
                                }}/>
@@ -107,7 +110,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"search"}/>
                                        <Search {...props}/>
                                    </div>)
                                }}/>
@@ -117,7 +120,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"search"}/>
                                        <Search {...props}/>
                                        <SearchResult {...props}/>
                                    </div>)
@@ -128,7 +131,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"details"}/>
                                        <MovieDetail {...props}/>
                                    </div>)
                                }}/>
@@ -139,7 +142,7 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"profile"}/>
                                        <Profile {...props}/>
                                    </div>)
                                }}/>
@@ -150,11 +153,31 @@ class MovieBoard extends Component {
                                    document.body.style.backgroundColor = "#1d1e22";
                                    return (<div>
                                        <MovieHeader {...props} loginUser={this.state.loginUser}
-                                                    updateLoginUser={this.updateLoginUser}/>
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"profile"}/>
                                        <GlobalProfile {...props}/>
                                    </div>)
                                }}/>
 
+                        <Route path="/followers"
+                               exact
+                               render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
+                                   return (<div>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"followers"}/>
+                                       <Followers {...props}/>
+                                   </div>)
+                               }}/>
+                        <Route path="/following"
+                               exact
+                               render={(props) => {
+                                   document.body.style.backgroundColor = "#1d1e22";
+                                   return (<div>
+                                       <MovieHeader {...props} loginUser={this.state.loginUser}
+                                                    updateLoginUser={this.updateLoginUser} currentActive={"following"}/>
+                                       <Following {...props}/>
+                                   </div>)
+                               }}/>
                     </div>
                 </Router>
             </div>

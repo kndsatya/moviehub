@@ -2,8 +2,8 @@ class UserService{
 
 
     constructor(){
-         //this.URL = "https://moviehub-server.herokuapp.com"
-        this.URL = "http://localhost:8081"
+         this.URL = "https://moviehub-server.herokuapp.com"
+        //this.URL = "http://localhost:8081"
     }
 
     register=(user)=>{
@@ -60,7 +60,23 @@ class UserService{
                 return response});
     }
 
+    findAllFollowers = (userId) => {
 
+        return fetch(this.URL+"/api/users/"+userId+"/followers",{
+            credentials:'include'
+        })
+            .then(response=>{
+                return response.json()});
+    }
+
+    findAllFollowing = (userId) => {
+
+        return fetch(this.URL+"/api/users/"+userId+"/following",{
+            credentials:'include'
+        })
+            .then(response=>{
+                return response.json()});
+    }
 
 
 
