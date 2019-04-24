@@ -40,6 +40,18 @@ class ReviewService{
         )
     }
 
+    deleteReviewOfAMovie = (movieId, reviewId) => {
+
+        return fetch(this.URL+"/api/movies/"+movieId+"/reviews/"+reviewId,{
+                         credentials:'include',
+                         method:"delete"
+                     }
+
+        ).then(
+            (response) => {return response.json()}
+        )
+    }
+
     updateReview = (review) => {
 
         const userId = review.user.id;
