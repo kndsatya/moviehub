@@ -82,6 +82,10 @@ class Profile extends React.Component{
             })
     }
 
+    showDetails = () => {
+        this.props.history.push("/profile/"+this.state.loginUser.id)
+    }
+
     componentDidMount(){
         this.userService.loggedinUser().then(
             user => {
@@ -198,6 +202,14 @@ class Profile extends React.Component{
                             <div className="col-sm-10">
                                 <button className="btn btn-success btn-block" onClick={this.updateProfile}>
                                     Update</button>
+                            </div>
+                        </div>
+
+                        <div className="form-group row">
+                            <label className="col-sm-2 col-form-label"></label>
+                            <div className="col-sm-10">
+                                <button className="btn btn-primary btn-block" onClick={this.showDetails}>
+                                    View Profile Details</button>
                             </div>
                         </div>
 
