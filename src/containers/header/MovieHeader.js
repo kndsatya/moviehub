@@ -53,6 +53,20 @@ class MovieHeader extends React.Component{
                         </li>
 
                         {
+                            this.props.loginUser.id!==null?<li className="nav-item">
+                                <a className="nav-link" role="btn"
+                                   onClick={()=>this.props.history.push("/followers")}>Followers</a>
+                            </li>:<li></li>
+                        }
+
+                        {
+                            this.props.loginUser.id!==null?<li className="nav-item">
+                                <a className="nav-link" role="btn"
+                                   onClick={()=>this.props.history.push("/following")}>Following</a>
+                            </li>:<li></li>
+                        }
+
+                        {
 
                             this.props.loginUser.id===null?<li className="nav-item">
                                 <a className="nav-link" role="btn"

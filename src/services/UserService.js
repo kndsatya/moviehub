@@ -22,6 +22,48 @@ class UserService{
 
     }
 
+    didLoginUserFollow = (loginId,profileId) => {
+        return fetch(this.URL+"/api/users/"+loginId+"/follow/users/"+profileId+"/check",{
+            credentials:'include'
+        })
+            .then(response=>{
+                return response.json()});
+    }
+
+
+    unfollow = (loginId,profileId) => {
+
+        return fetch(this.URL+"/api/users/"+loginId+"/unfollow/users/"+profileId,{
+                         credentials:'include',
+                         method:"delete"
+                     }
+
+        ).then(
+            response => {
+                return response}
+        );
+    }
+
+
+
+    follow = (loginId,profileId) => {
+
+        return fetch(this.URL+"/api/users/"+loginId+"/follow/users/"+profileId,{
+            method:'post',
+            credentials:'include',
+            headers:{
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+            }
+        })
+            .then((response)=>{
+                return response});
+    }
+
+
+
+
+
     findAllUsers=()=>{
         return fetch(this.URL+"/api/users",{
             credentials:'include'
