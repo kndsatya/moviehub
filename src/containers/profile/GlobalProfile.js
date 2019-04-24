@@ -40,11 +40,13 @@ class GlobalProfile extends React.Component{
             reviews:[],
             reviewToEdit:"",
             commentUpdate:"",
+            didLoginUserFollow:false
         }
 
 
 
     }
+
 
     readUpdatedComments = (reviewComment) => {
         this.setState(
@@ -117,6 +119,18 @@ class GlobalProfile extends React.Component{
                             loginUser: user
                         }
                     )
+
+                    if(user.id!==null){
+
+                        this.userService.didLoginUserFollow(this.state.loginUser.id,this.profileId)
+                            .then(response => {
+                                this.setState(
+                                    {
+                                        didLoginUserFollow: response
+                                    }
+                                )
+                            } )
+                    }
                 }
             )
 
@@ -140,14 +154,61 @@ class GlobalProfile extends React.Component{
 
     }
 
+    unfollow=()=>{
+        this.userService.unfollow(this.state.loginUser.id,this.profileId)
+            .then((response)=>{
+                if(response){
+                this.setState(
+                    {
+                        didLoginUserFollow: false
+                    }
+                 )
+                }else{
+                    alert("Unable to unfollow");
+                }
+            })
+    }
+
+    follow=()=>{
+
+        this.userService.follow(this.state.loginUser.id,this.profileId)
+            .then((response)=>{
+
+                if(response){
+
+                    this.setState(
+                        {
+                            didLoginUserFollow: true
+                        }
+                    )
+                }else{
+                    alert("Unable to follow");
+                }
+            })
+    }
+
     render(){
+
+        if(this.state.user.username===null){
+            return(<div></div>)
+        }
         return(
             <div>
 
                 <div className="moviehub-text mt-1 mr-5">
                     <div className="row float-right">
-                        <h5>{this.state.user.username.toUpperCase()}&nbsp;&nbsp;</h5>
-                        <h5>{this.state.user.role}</h5>
+                        {
+
+                            this.state.loginUser.id!==null && parseInt(this.state.loginUser.id)!== parseInt(this.profileId)?
+                            this.state.didLoginUserFollow?<button className="btn btn-danger"
+                                                         onClick={this.unfollow}>UnFollow</button>:
+                            <button className="btn btn-primary"
+                                onClick={this.follow}>Follow</button>:
+                            <h5></h5>
+                        }
+                        <h5> &nbsp;&nbsp;</h5>
+                        <h4>{this.state.user.username!== null?this.state.user.username.toUpperCase():this.state.user.username}&nbsp;&nbsp;</h4>
+                        <h4>{this.state.user.role}</h4>
                     </div>
                  </div>
 
@@ -159,7 +220,7 @@ class GlobalProfile extends React.Component{
                 {
                     this.state.user.role === "AUDIENCE"?
                     <div className="container-fluid mt-2 ml-1 moviehub-text">
-                        <div className="row ml-2">
+                        <div className="row ml-2 mt-1">
                             {this.state.likedMovies.length !== 0 ?
                              <h4><strong>LIKED MOVIES:</strong></h4> :
                              <div></div>}
@@ -178,7 +239,7 @@ class GlobalProfile extends React.Component{
                         </div>
                     </div>:
 
-                    <div className="container mt-2">
+                    <div className="container mt-3">
 
                         <div className="accordion" id="reviews">
 
