@@ -31,7 +31,7 @@ class MovieDetail extends React.Component {
                 director:"N/A",
                 writer:"N/A",
                 language:"N/A",
-                conutry:"N/A"
+                country:"N/A"
 
 
             },
@@ -72,7 +72,7 @@ class MovieDetail extends React.Component {
 
     updateReview = (review) => {
 
-        review.reviewComments = this.state.commentUpdate
+        review.reviewComment = this.state.commentUpdate
         this.reviewService.updateReview(review)
             .then(() => {
                       this.movieService.getReviews(review.movie.id)
@@ -92,38 +92,42 @@ class MovieDetail extends React.Component {
             )
     }
 
-    postReview = (reviewComment) => {
-        this.reviewService.postReview(reviewComment, this.state.movie, this.state.loggedInUser)
+    postReview = () => {
+        this.reviewService.postReview(this.state.reviewComment, this.state.movie, this.state.loggedInUser)
             .then(
                 () => {
+
                     this.movieService.getReviews(this.state.movie.id).then(
                         (reviews) => {
-                            this.setState({
-                                              reviews: reviews,
-                                              reviewComment: "",
 
-                                          })
-                        }
-                    )
-                }
+                                                this.setState(
+                                                    {
+                                                        reviews: reviews
+                                                    }
+                                                )}
             )
-    }
+    })}
 
     deleteReview = (reviewId) => {
+
         this.reviewService.deleteReview(reviewId).then(
-            this.movieService.getReviews(this.state.movie.id).then(
-                (reviews) => {
-                    this.setState(
-                        {
-                            reviews: reviews
-                        }
-                    )
-                }
-            )
-        )
+
+            (reviews) => {
+                this.setState(
+                    {
+                        reviews: reviews
+                    }
+                )
+            })
     }
 
     disLikeMovie = () => {
+
+        if(this.state.loggedInUser.id===""||this.state.loggedInUser.role==="CRITIC"){
+            alert("You should login as 'AUDIENCE' to unlike a movie");
+            return;
+        }
+
         this.movieService.disLikeMovie(this.state.movie.id, this.state.loggedInUser.id).then(
             () => {
                 this.setState(
@@ -131,18 +135,40 @@ class MovieDetail extends React.Component {
                         didUserLike: false
                     }
                 )
+
+                this.movieService.getLikedUsers(this.movieId)
+                    .then(
+                        (users) => {
+                            this.setState({
+                                              likedUsers: users
+                                          })
+                        }
+                    )
             }
         )
     }
 
     likeMovie = () => {
-        this.movieService.disLikeMovie(this.state.movie.id, this.state.loggedInUser.id).then(
+
+        if(this.state.loggedInUser.id===""||this.state.loggedInUser.role==="CRITIC"){
+            alert("You should login as 'AUDIENCE' to like the movie");
+            return;
+        }
+        this.movieService.likeMovie(this.state.movie.id, this.state.loggedInUser.id).then(
             () => {
                 this.setState(
                     {
                         didUserLike: true
                     }
                 )
+                this.movieService.getLikedUsers(this.movieId)
+                    .then(
+                        (users) => {
+                            this.setState({
+                                              likedUsers: users
+                                          })
+                        }
+                    )
             }
         )
     }
@@ -168,6 +194,7 @@ class MovieDetail extends React.Component {
         this.movieService.getLikedUsers(this.movieId)
             .then(
                 (users) => {
+
                     this.setState({
                                       likedUsers: users
                                   })
@@ -177,19 +204,22 @@ class MovieDetail extends React.Component {
         this.movieService.getReviews(this.movieId)
             .then(
                 (reviews) => {
-                    this.setState({
-                                      reviews: reviews
-                                  })
-                }
-            )
+
+                                        this.setState(
+                                            {
+                                                reviews: reviews
+                                            }
+                                        )
+                                    }
+                                )
+
 
         this.userService.loggedinUser().then((user) => {
 
-            if (user.id !== "") {
+            if (user.id !== null) {
 
                 this.userService.findAllLikedMovies(user.id)
                     .then((likedMovies) => {
-
                         let didUserLike = false
                         for (var i = 0; i < likedMovies.length; i++) {
                             if (likedMovies[i].id == this.movieId) {
@@ -212,10 +242,12 @@ class MovieDetail extends React.Component {
             .then(
                 (responseMovie) => {
                     let tmdb_movie = this.state.movie
+                    tmdb_movie.id = responseMovie.id
                     tmdb_movie.title = responseMovie.title
                     tmdb_movie.overview = responseMovie.overview
                     tmdb_movie.release_date = responseMovie.release_date
                     tmdb_movie.imdb_id = responseMovie.imdb_id
+                    tmdb_movie.poster_path = responseMovie.poster_path
                     this.setState({
                                       movie: tmdb_movie
                                   })
@@ -242,15 +274,14 @@ class MovieDetail extends React.Component {
                                 this.setState({
                                                   movie: omdb_movie
                                               })
+                                this.movieService.createMovie(this.state.movie)
+                                    .then((movie)=>{
+                                        return movie
+                                    })
                             }
                         )
                 }
             )
-
-        this.movieService.createMovie(this.state.movie)
-            .then((movie)=>{
-                    return
-                  })
     }
 
     render() {
@@ -514,7 +545,8 @@ class MovieDetail extends React.Component {
                                 <div className="card-body">
 
                                     {
-                                        this.state.loggedInUser.id !== "" && this.state.loggedInUser.role==="CRITIC"? <PostReview
+                                        this.state.loggedInUser.id !== null && this.state.loggedInUser.role==="CRITIC"?
+                                        <PostReview
                                                                               postReview={this.postReview}
                                                                               reviewComment={this.state.reviewComment}
                                                                               updateReviewComments={this.updateReviewComments}/> :
@@ -525,7 +557,7 @@ class MovieDetail extends React.Component {
                                         (review) => {
                                             if (review.id === this.state.reviewToEdit) {
                                                 return (
-                                                    <ReviewUpdate
+                                                    <ReviewUpdate key={review.id}
                                                         readUpdatedComments={this.readUpdatedComments}
                                                         review={review}
                                                         updateReview={this.updateReview}/>

@@ -1,18 +1,28 @@
-import users from './users.json';
 class UserService{
 
-    constructor(){
 
+    constructor(){
+         this.URL = "http://localhost:8081"
     }
 
     register=(user)=>{
-            user.id = Math.random()
-            users.push(user);
-            return Promise.resolve(user);
+        console.log(user)
+        return fetch( this.URL+"/api/register",{
+            method:'post',
+            body: JSON.stringify(user),
+            credentials:'include',
+            headers:{
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+            }
+        })
+            .then((response)=>{
+                return response.json()});
+
     }
 
     findAllUsers=()=>{
-        return fetch("https://fast-mesa-67485.herokuapp.com/api/users",{
+        return fetch(this.URL+"/api/users",{
             credentials:'include'
         })
             .then(response=>{
@@ -21,100 +31,62 @@ class UserService{
 
     loggedinUser = ()=>{
 
-        return Promise.resolve(users[0]);
+        return fetch(this.URL+"/api/profile",{
+            credentials:'include'
+        })
+            .then(response=>{
+                return response.json()
+            });
 
     }
 
     findAllReviews = (userId) => {
-        return Promise.resolve([
-                                   {
-                                       id: 1,
-                                       reviewComments: "Very Good Movie!!!!!",
-                                       user: {
-                                           id: 1,
-                                           username: "satya"
-                                       },
-                                       movie: {
-                                           id: "tt8361196",
-                                           title: "vvr"
-                                       }
-                                   }, {
-                id: 2,
-                reviewComments: "Very Good Movie!!!!!",
-                user: {
-                    id: 2,
-                    username: "satya"
-                }, movie:{
-                    id: "tt8361196",
-                    title: "ntr"
-                }
-            }, {
-                id: 3,
-                reviewComments: "Very Good Movie!!!!!",
-                user: {
-                    id: 3,
-                    username: "satya"
-                }, movie:{
-                    id: "tt8361196",
-                    title: "nbk"
-                }
-            }, {
-                id: 4,
-                reviewComments: "Very Good Movie !!!!!!!!!!!!!",
-                user: {
-                    id: 4,
-                    username: "satya"
-                }, movie:{
-                    id: "tt8361196",
-                    title: "cheg"
-                }
-            }
-                               ])
+          return fetch(
+              this.URL+"/api/user/"+userId+"/reviews",{
+                  credentials:'include'
+              }
+          ).then(
+              response => response.json()
+          )
     }
+
 
     findAllLikedMovies = (userId) =>{
-        return Promise.resolve([
-
-                                   {
-                                       "id": "tt4442758",
-                                       "title":"Temper",
-                                       "poster_path":"/vRfSEFM9waphZKoa3ALTZCUYb2F.jpg",
-                                       "overview":"Daya, a corrupt police officer, finds his life changing when he takes on a case of gang rape."
-                                   },
-                                   {
-                                       "id": "tt8361196",
-                                       "title":"Vinaya Vidheya Rama",
-                                       "poster_path":"/oN4LAx5mRaLINaovFv2vo7Tfdsx.jpg",
-                                       "overview":"Ram is one among the five orphaned boys in Visakhapatnam, adopted by a doctor who ensures them a roof to live under, with dignity. Ram goes to any extent to protect his family and he's a handful for the baddie to handle in a time of crisis. How does Ram protect his family when they need him the most?"
-                                   }
-                               ])
+          return fetch(
+              this.URL+"/api/user/"+userId+"/likedMovies",{
+                  credentials:'include'
+              }
+          ).then(
+              response => response.json()
+          )
     }
 
-    findAllReviewedMovies = () => {
-        return Promise.resolve([
+    findAllReviewedMovies = (userId) => {
+        return fetch(
+            this.URL+"/api/user/"+userId+"/reviewedMovies",{
+                credentials:'include'
+            }
+        ).then(
+            response => {
 
-                                   {
-                                       "id": "tt4442758",
-                                       "title":"Temper",
-                                       "poster_path":"/vRfSEFM9waphZKoa3ALTZCUYb2F.jpg",
-                                       "overview":"Daya, a corrupt police officer, finds his life changing when he takes on a case of gang rape."
-                                   },
-                                   {
-                                       "id": "tt8361196",
-                                       "title":"Vinaya Vidheya Rama",
-                                       "poster_path":"/oN4LAx5mRaLINaovFv2vo7Tfdsx.jpg",
-                                       "overview":"Ram is one among the five orphaned boys in Visakhapatnam, adopted by a doctor who ensures them a roof to live under, with dignity. Ram goes to any extent to protect his family and he's a handful for the baddie to handle in a time of crisis. How does Ram protect his family when they need him the most?"
-                                   }
-                               ])
+                return response.json()}
+        )
     }
 
     findUserById = (userId) => {
 
-        return Promise.resolve(users[0])
+        return fetch(
+            this.URL+"/api/users/"+userId,{
+                credentials:"include"
+            }
+        ).then(
+            response => response.json()
+        )
     }
 
     updateUser=(user)=>{
-        return fetch("https://fast-mesa-67485.herokuapp.com/api/update",{
+
+        return fetch(this.URL+"/api/update",{
             method:'put',
             body: JSON.stringify(user),
             credentials:'include',
@@ -128,14 +100,14 @@ class UserService{
     }
 
     logout=()=>{
-        return fetch("https://fast-mesa-67485.herokuapp.com/api/logout",{
+        return fetch(this.URL+"/api/logout",{
             credentials:'include'
         })
     }
 
     loginUser = (user) => {
 
-        return fetch("https://fast-mesa-67485.herokuapp.com/api/login",{
+        return fetch(this.URL+"/api/login",{
             method:'post',
             body: JSON.stringify(user),
             credentials:'include',

@@ -1,11 +1,26 @@
 import React from 'react'
 import "./Header.css"
+import UserService from "../../services/UserService";
 class MovieHeader extends React.Component{
 
     constructor(props){
+
         super(props)
+        this.userService = new UserService()
     }
 
+    logout = () => {
+
+        this.props.updateLoginUser({
+                                      id:null,
+                                      username:null,
+                                      password:null,
+                                      role:null
+                                   })
+        this.userService.logout().then(()=>{
+            this.props.history.push("/")
+        })
+    }
 
     render(){
 
@@ -25,25 +40,30 @@ class MovieHeader extends React.Component{
                             <a className="nav-link" role="btn"
                                onClick={()=>this.props.history.push("/home")}>Home</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" role="btn"
-                               onClick={()=>this.props.history.push("/profile")}>Profile</a>
-                        </li>
+                        {
+                            this.props.loginUser.id!==null?<li className="nav-item">
+                                <a className="nav-link" role="btn"
+                                   onClick={()=>this.props.history.push("/profile")}>Profile</a>
+                            </li>:<li></li>
+                        }
+
                         <li className="nav-item">
                             <a className="nav-link" role="btn"
                                onClick={()=>this.props.history.push("/search")}>Search</a>
                         </li>
+
                         {
-                            this.props.loginUser.id===""?<li className="nav-item">
+
+                            this.props.loginUser.id===null?<li className="nav-item">
                                 <a className="nav-link" role="btn"
                                    onClick={()=>this.props.history.push("/login")}>Login</a>
                             </li>:                         <li className="nav-item">
                                 <a className="nav-link" role="btn"
-                                   onClick={()=>this.props.history.push("/logout")}>Logout</a>
+                                   onClick={()=>this.logout()}>Logout</a>
                             </li>
                         }
                         {
-                            this.props.loginUser.id===""?<li className="nav-item">
+                            this.props.loginUser.id===null?<li className="nav-item">
                                 <a className="nav-link" role="btn"
                                    onClick={()=>this.props.history.push("/SignUp")}>SignUp</a>
                             </li>:<li></li>

@@ -46,7 +46,7 @@ const Review = ({review,editReview,deleteReview,loginUser,props,isMovieReview}) 
 
     </div>
     <div className="mt-2 ml-4">
-        <p>{review.reviewComments}</p>
+        <p>{review.reviewComment}</p>
     </div>
     <div>
         <hr/>

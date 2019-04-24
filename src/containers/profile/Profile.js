@@ -21,7 +21,7 @@ class Profile extends React.Component{
                 firstName:"",
                 lastName:"",
                 password:"",
-                phoneNumber:"",
+                phoneNumberNumber:"",
                 email:"",
                 role:"",
                 dateOfBirth:""
@@ -37,7 +37,7 @@ class Profile extends React.Component{
             id: this.state.loginUser.id,
             username:this.state.loginUser.username,
             password:this.state.loginUser.password,
-            phone: document.getElementById("phone").value,
+            phoneNumber: document.getElementById("phoneNumber").value,
             email:document.getElementById("email").value,
             role:this.state.loginUser.role,
             firstName: document.getElementById("firstName").value,
@@ -50,9 +50,9 @@ class Profile extends React.Component{
             alert("Email should be in the format alice@gmail.com");
             return;
         }
-        var phoneregEx = /\d/g;
-        if( updatedUser.phone==="" || !phoneregEx.test(updatedUser.phone) || updatedUser.phone.match(/\d/g).length!==10){
-            alert("Phone number should contain only 10 digits")
+        var phoneNumberregEx = /\d/g;
+        if( updatedUser.phoneNumber==="" || !phoneNumberregEx.test(updatedUser.phoneNumber) || updatedUser.phoneNumber.match(/\d/g).length!==10){
+            alert("phoneNumber number should contain only 10 digits")
             return
         }
 
@@ -66,6 +66,7 @@ class Profile extends React.Component{
             return
         }
 
+
         if(updatedUser.dateOfBirth==="" || new Date(updatedUser.dateOfBirth) >= new Date()){
             alert("Date of birth can't be empty or can't be in future")
             return
@@ -73,15 +74,19 @@ class Profile extends React.Component{
 
         alert("Profile Updated Successfully")
         this.userService.updateUser(updatedUser)
-            .then((user)=>this.setState({
+            .then((user)=>{
+                this.setState({
                                             loginUser: user
-                                        }))
+                                        })
+                 this.props.history.push("/home")
+            })
     }
 
     componentDidMount(){
         this.userService.loggedinUser().then(
             user => {
-                if(user.id===""){
+
+                if(user.id===null){
                     this.props.history.push("/")
                 }
                 this.setState(
@@ -92,7 +97,7 @@ class Profile extends React.Component{
                             username: user.username,
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            phone: user.phone,
+                            phoneNumber: user.phoneNumber,
                             email:user.email,
                             role:user.role,
                             dateOfBirth:user.dateOfBirth
@@ -119,13 +124,14 @@ class Profile extends React.Component{
                                    readOnly/>
                         </div>
                     </div>
+
                         <div className="form-group row">
                             <label htmlFor="role"
                                    className="col-sm-2 col-form-label">Role</label>
                             <div className="col-sm-10">
                                 <input className="form-control"
                                        id="role"
-                                       defaultValue={this.state.loginUser.role}
+                                       defaultValue={ this.state.loginUser.role}
                                        readOnly/>
                             </div>
                         </div>
@@ -154,11 +160,11 @@ class Profile extends React.Component{
                         </div>
 
                         <div className="form-group row">
-                            <label htmlFor="phone" className="col-sm-2 col-form-label">Phone</label>
+                            <label htmlFor="phoneNumber" className="col-sm-2 col-form-label">phoneNumber</label>
                             <div className="col-sm-10">
                                 <input className="form-control"
-                                       id="phone"
-                                       defaultValue={this.state.loginUser.phone}
+                                       id="phoneNumber"
+                                       defaultValue={this.state.loginUser.phoneNumber}
                                        placeholder="5551234578"/>
                             </div>
                         </div>

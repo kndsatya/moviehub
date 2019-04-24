@@ -21,7 +21,7 @@ class MovieGrid extends React.Component {
                 firstName: "",
                 lastName: "",
                 password: "",
-                phone: "",
+                phoneNumber: "",
                 email: "",
                 role: "",
                 dateOfBirth: ""
@@ -47,9 +47,10 @@ class MovieGrid extends React.Component {
                         loginUser: user,
                     }
                 )
-                if(this.state.loginUser.id!=="") {
 
-                    if(this.state.loginUser.role=="USER"){
+                if(this.state.loginUser.id!==null) {
+
+                    if(this.state.loginUser.role=="AUDIENCE"){
                         this.userService.findAllLikedMovies(this.state.loginUser.id)
                             .then((movies) => {
                                 this.setState({
@@ -77,8 +78,8 @@ class MovieGrid extends React.Component {
             <div className="moviehub-text">
                 {
 
-                    this.state.loginUser.id === ""?<div></div>:
-                    this.state.loginUser.role === "USER" ? <div className="container-fluid mt-3 ml-1">
+                    this.state.loginUser.id === null?<div></div>:
+                    this.state.loginUser.role === "AUDIENCE" ? <div className="container-fluid mt-3 ml-1">
                                                              <div className="row ml-2">
                                                                  {this.state.likedMovies.length!==0?
                                                                   <h4><strong>LIKED MOVIES:</strong></h4>:

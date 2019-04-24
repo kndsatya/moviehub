@@ -17,7 +17,7 @@ class Login extends React.Component {
     componentDidMount(){
         this.userService.loggedinUser().then(
             (user)=>{
-                if(user.id!==""){
+                if(user.id!== null){
                     this.props.history.push("/profile")
                 }
             }
@@ -43,7 +43,7 @@ class Login extends React.Component {
             (user)=>{
                 if(user.username!==null){
                     this.props.updateLoginUser(user)
-                    return this.props.history.push("/profile")}
+                    return this.props.history.push("/home")}
                 alert("Invalid Credentials")
             }
 

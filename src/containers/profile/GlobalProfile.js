@@ -64,10 +64,10 @@ class GlobalProfile extends React.Component{
 
     updateReview = (review) => {
 
-        review.reviewComments = this.state.commentUpdate
+        review.reviewComment = this.state.commentUpdate
         this.reviewService.updateReview(review)
             .then(() => {
-                      this.userService.findAllReviews()
+                      this.movieService.getReviews(review.movie.id)
                           .then(
                               (reviews) => {
                                   this.setState(
@@ -85,17 +85,16 @@ class GlobalProfile extends React.Component{
     }
 
     deleteReview = (reviewId) => {
+
         this.reviewService.deleteReview(reviewId).then(
-            this.userService.findAllReviews().then(
-                (reviews) => {
-                    this.setState(
-                        {
-                            reviews: reviews
-                        }
-                    )
-                }
-            )
-        )
+
+            (reviews) => {
+                this.setState(
+                    {
+                        reviews: reviews
+                    }
+                )
+            })
     }
 
 
@@ -148,7 +147,7 @@ class GlobalProfile extends React.Component{
                 <div className="moviehub-text mt-1 mr-5">
                     <div className="row float-right">
                         <h5>{this.state.user.username.toUpperCase()}&nbsp;&nbsp;</h5>
-                        <h5>{this.state.user.role==="USER"?"AUDIENCE":"CRITIC"}</h5>
+                        <h5>{this.state.user.role}</h5>
                     </div>
                  </div>
 
@@ -158,7 +157,7 @@ class GlobalProfile extends React.Component{
 
                 <div>
                 {
-                    this.state.user.role === "USER"?
+                    this.state.user.role === "AUDIENCE"?
                     <div className="container-fluid mt-2 ml-1 moviehub-text">
                         <div className="row ml-2">
                             {this.state.likedMovies.length !== 0 ?
